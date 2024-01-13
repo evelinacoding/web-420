@@ -1,5 +1,5 @@
 # web-420
-repository for web-420
+repository for web 420
 
 <h1>WEB 420 RESTFul APIs</h1>
 <h2>Contributors</h2>
