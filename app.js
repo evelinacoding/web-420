@@ -1,3 +1,13 @@
+/*
+============================================
+; Title:  app.js
+; Author: Evelyn Zepeda
+; Date:   1/14/24
+; Description: Main server file for the assignments in WEB 420 RESTful APIs
+;===========================================
+*/
+
+
 const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
