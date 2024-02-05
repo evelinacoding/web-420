@@ -7,9 +7,11 @@
 ;===========================================
 */
 
+
 const express = require('express');
 const router = express.Router();
 const Composer = require('../models/zepeda-composer');
+
 
 /*openapi: 3.0.0
 info:
@@ -30,14 +32,17 @@ paths:
           description: MongoDB Exception
           */
 
-router.get('/api/composers', async(req, res) => {
+
+router.get('/api/composers', async (req, res) => {
     try {
-        Composer.find({}, function(err, composers) {
+    
+      Composer.find({}, function(err, composers) {
             if(err) {
                 console.log(err);
                 res.status(501).send({
                     'message':`MongoDB Exception ${err}`
                 })
+
 
             } else {
                 console.log(composers);
@@ -50,7 +55,8 @@ router.get('/api/composers', async(req, res) => {
             'message': `Server Exception ${e.message}`
         })
     }
-});
+  })
+
 
 /*
 /composers/{id}:
@@ -74,9 +80,11 @@ get:
     "501":
       description: MongoDBException
 
+
 */
 
-router.get('/api/composers/:id', async(req, res) => {
+
+router.get('api/composers/:id', async(req, res) => {
     try {
         Composer.findOne({'_id': req.params.id}, function(err, composers) {
             if(err) {
@@ -96,6 +104,7 @@ router.get('/api/composers/:id', async(req, res) => {
         })
     }
 })
+
 
 /* post:
       summary: Creates a new composer object
@@ -120,14 +129,14 @@ router.get('/api/composers/:id', async(req, res) => {
           description: MongoDBException
           */
 
-router.post('/composers', async(req, res) => {
+
+router.post('/api/composers', async (req, res) => {
     try {
         const newComposer = {
             firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            id: req.body.id
-           
+            lastName: req.body.lastName        
         };
+
 
         await Composer.create(newComposer, function(err, composer) {
         if (err) {
@@ -147,6 +156,9 @@ router.post('/composers', async(req, res) => {
         })
     }
 
+
 })
 
 module.exports = router;
+
+

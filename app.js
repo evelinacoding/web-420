@@ -13,14 +13,29 @@ const http = require('http');
 const mongoose = require('mongoose');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const composerAPI = require('./routes/zepeda-composer-routes')
+
 
 const app = express();
+
+const conn = 'mongodb+srv://web420_user:s3cret@bellevueuniversity.8vzftv7.mongodb.net/web420DB?retryWrites=true&w=majority'
+
+mongoose.connect(conn, {
+    promiseLibrary: require('bluebird'),
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+}).then(() => {
+    console.log("Connection to the database was succesful")
+}).catch(err => {
+    console.log(`MongoDB Error: ${err.message}`)
+})
+
 
 //Setting the port
 app.set('port', process.env.PORT || 3000);
 
 //Setting the app to use express/json
-app.use(express.json());
+app.use(express.json())
 
 //Setting the app to urlencoded
 app.use(express.urlencoded({'extended': true }));
@@ -42,6 +57,9 @@ const openapiSpecification = swaggerJsdoc(options);
 
 //Wiring the swaggerSpec variable
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
+
+app.use('/api', composerAPI)
+
 
 
 //To start the server on port 3000
