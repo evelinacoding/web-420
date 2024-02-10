@@ -11,8 +11,26 @@ const express = require('express');
 const router = express.Router();
 const Person = require('../models/zepeda-person');
 
+/**
+ * findAllPersons
+ * @openapi
+ * /api/persons:
+ *  get:
+ *   summary: Returns a list of all the people
+ *   description: API for returning all people
+ *   responses:
+ *    '200':
+ *      description: People documents
+ *    '500':
+ *      description: Server Exception
+ *    '501':
+ *      description: MongoDB Exception
+ *   tags:
+ *    - People
+ */
+
 //Creating the findAllPersons in MongoDB database operation
-router.get('/persons'), async(req, res) => {
+router.get('/persons', async(req, res) => {
     try {
         //Keeping {} empty searches for all the documents
         Person.find({}, function(err, persons) {
@@ -33,7 +51,50 @@ router.get('/persons'), async(req, res) => {
             'message': `Server Exception: ${e.message}`
         })
     }
-}
+})
+
+/**
+ * createPerson
+ * @openapi
+ * /api/persons:
+ *  post:
+ *   summary: Creates a new person
+ *   description: Adds a new person to the collection
+ *   requestBody:
+ *    description: To create a new person
+ *    content:
+ *     application/json:
+ *      schema:
+ *       required:
+ *        - firstName
+ *        - lastName
+ *        - roles
+ *        - dependents
+ *       properties:
+ *        firstName:
+ *         type: string
+ *        lastName:
+ *         type: string
+ *        roles:
+ *         type: array
+ *         items:
+ *          type: object
+ *        dependents:
+ *         type: array
+ *         items:
+ *          type: object
+ *        birthDate:
+ *         type: string
+ *   responses:
+ *    "200":
+ *      description: Person added
+ *    "500":
+ *      description: Server Exception
+ *    "501":
+ *      description: MongoDB Exception
+ *   tags:
+ *    - People
+ */
 
 router.post('/persons', async(req, res) => {
     try {

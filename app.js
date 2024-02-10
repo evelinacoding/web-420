@@ -15,7 +15,7 @@ const swaggerui = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 var mongoose = require('mongoose');
 const composerAPI = require('./routes/zepeda-composer-routes')
-
+const personAPI = require('./routes/zepeda-person-routes')
 
 const app = express();
 
@@ -49,11 +49,6 @@ mongoose.connect(conn, {
 const options = {
     definition: {
         openapi: '3.0.0',
-        servers: [
-            {
-                url: "http:localhost:3000/",
-            },
-        ],
 
         info: {
             title: 'WEB 420 RESTFUL APIs',
@@ -70,6 +65,7 @@ const openapiSpecification = swaggerJsdoc(options);
 app.use('/api-docs', swaggerui.serve, swaggerui.setup(openapiSpecification));
 
 app.use('/api', composerAPI)
+app.use('/api', personAPI)
 
 
 
