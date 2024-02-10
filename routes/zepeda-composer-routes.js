@@ -7,7 +7,7 @@
 ;===========================================
 */
 
-
+//Creating variables
 const express = require('express');
 const router = express.Router();
 const Composer = require('../models/zepeda-composer');
@@ -31,6 +31,7 @@ const Composer = require('../models/zepeda-composer');
  *    - Composers
  */
 
+//To get a list of all the composers
 router.get('/composers', async(req, res) => {
     try {
     
@@ -79,6 +80,7 @@ router.get('/composers', async(req, res) => {
  *      - Composers
  */
 
+//To request a composer by id
 router.get('/composers/:id', async(req, res) => {
     try {
         Composer.findOne({'_id' : req.params.id}, function(err, composers) {
@@ -128,7 +130,7 @@ router.get('/composers/:id', async(req, res) => {
  *      - Composers
  */
 
-
+//To create a new composer
 router.post('/composers', async(req, res) => {
     try {
         const newComposer = {
@@ -157,6 +159,7 @@ router.post('/composers', async(req, res) => {
 
 })
 
+//To export the routes
 module.exports = router;
 
 

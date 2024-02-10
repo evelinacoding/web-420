@@ -8,7 +8,7 @@
 */
 
 
-
+//To create variables and routes
 const express = require('express');
 const http = require('http');
 const swaggerui = require('swagger-ui-express');

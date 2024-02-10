@@ -7,6 +7,7 @@
 ;===========================================
 */
 
+//Create variables and routes
 const express = require('express');
 const router = express.Router();
 const Person = require('../models/zepeda-person');
@@ -96,6 +97,7 @@ router.get('/persons', async(req, res) => {
  *    - People
  */
 
+//To create a new person
 router.post('/persons', async(req, res) => {
     try {
         const newPerson = {
@@ -126,4 +128,5 @@ router.post('/persons', async(req, res) => {
 
 })
 
+//To export the routes
 module.exports = router;
