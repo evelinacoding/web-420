@@ -7,8 +7,8 @@
 ;===========================================
 */
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
 //Creating the Mongoose Schema
 let composerSchema = new Schema({
