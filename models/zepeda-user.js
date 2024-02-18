@@ -12,10 +12,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Creating the userSchema
-let userSchema = new Schema({
+const userSchema = new Schema({
     userName: {type: String},
-    Password: {type: String},
-    emailAddress: []
+    password: {type: String},
+    emailAddress: {type: String},
 });
 
 //Exporting the userSchema
