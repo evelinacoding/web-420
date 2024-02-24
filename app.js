@@ -17,6 +17,7 @@ var mongoose = require('mongoose');
 const composerAPI = require('./routes/zepeda-composer-routes')
 const personAPI = require('./routes/zepeda-person-routes')
 const usersAPI = require('./routes/zepeda-session-routes')
+const customerAPI = require('./routes/zepeda-node-shopper-routes')
 
 const app = express();
 
@@ -68,6 +69,7 @@ app.use('/api-docs', swaggerui.serve, swaggerui.setup(openapiSpecification));
 app.use('/api', composerAPI)
 app.use('/api', personAPI)
 app.use('/api', usersAPI)
+app.use('/api', customerAPI)
 
 
 
